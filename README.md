@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📝 ToDo Smart Website
 
-## Getting Started
+A modern, smart **ToDo management web app** built with **Next.js**, **Tailwind CSS**, **NextAuth.js**, **Google OAuth**, and **Gemini AI** integration.  
+Easily manage your daily tasks, stay productive, and let AI help you organize better.  
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- ✅ **Authentication with Google** (via NextAuth.js)  
+- 🗂️ **Smart ToDo List** – add, edit, delete, and mark tasks as completed  
+- ⚡ **Real-time Updates** with auto-save (debounced edit handling)  
+- 🎨 **Responsive UI** powered by Tailwind CSS  
+- 🔒 **Secure Routes** – tasks linked to user accounts  
+- 🤖 **Gemini AI integration** for task suggestions and smart recommendations  
+- 📱 **Mobile-friendly design**  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** [Next.js](https://nextjs.org/) + [Tailwind CSS](https://tailwindcss.com/)  
+- **Authentication:** [NextAuth.js](https://next-auth.js.org/) with Google Provider  
+- **Database/API:** REST API endpoints with MongoDB (via Mongoose)  
+- **AI Integration:** Google **Gemini API** for smart insights  
+- **UI Components:** Tailwind, Lucide Icons  
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repo
+```bash
+git clone https://github.com/PavishK/ToDO-SMART
+cd todo-smart
+````
+
+### 2️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Environment variables
+
+Create a `.env.local` file in the root and add:
+
+```env
+# NextAuth
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_secret_here
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# MongoDB
+MONGODB_URI=your_mongodb_connection_string
+
+# Gemini API
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+### 4️⃣ Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App runs at 👉 [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📸 Screenshots (Optional)
 
-## Learn More
+*Add screenshots or gifs of your app here for better presentation.*
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔮 Future Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* 🌙 Dark mode support
+* 📊 Analytics dashboard for completed tasks
+* 🧠 More AI-powered task planning features
+* 📱 PWA support for offline usage
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome!
+Feel free to fork this repo and submit pull requests.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+Developed with ❤️ by **PavishK**
+
+* GitHub: [@PavishK](https://github.com/PavishK)
+* LinkedIn: [Pavish-K](www.linkedin.com/in/pavish-k-12july2005)
+
+```
