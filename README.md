@@ -73,7 +73,8 @@ App runs at 👉 [http://localhost:3000](http://localhost:3000)
 
 ## 📸 Screenshots (Optional)
 
-*Add screenshots or gifs of your app here for better presentation.*
+<img width="1905" height="902" alt="image" src="https://github.com/user-attachments/assets/b3a12b5b-8e54-4344-9f7c-ea15a9d36e6a" />
+
 
 ---
 
