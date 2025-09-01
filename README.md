@@ -1,7 +1,7 @@
 # 📝 ToDo Smart Website
 
 A modern, smart **ToDo management web app** built with **Next.js**, **Tailwind CSS**, **NextAuth.js**, **Google OAuth**, and **Gemini AI** integration.  
-Easily manage your daily tasks, stay productive, and let AI help you organize better.  
+Easily manage your daily tasks, stay productive, and let AI help you.
 
 ---
 

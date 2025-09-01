@@ -107,7 +107,7 @@ function ToDoList({ params }) {
     } finally {
       setLastChanged(-1);
     }
-  }, 1000);
+  }, 2200);
 
   return () => clearTimeout(debouncing);
 }, [lastChanged, todos]);
