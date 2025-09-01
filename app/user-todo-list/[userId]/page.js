@@ -8,6 +8,10 @@ import { toast } from "react-hot-toast";
 import Loader from "@/component/Loader";
 import NavBar from "@/component/NavBar";
 import { PlusIcon, XIcon } from "lucide-react";
+import Image from "next/image";
+import { AnimatePresence } from "framer-motion";
+import GeminiAI from "@/component/GeminiAI";
+import { getRandomToDo } from "./randomToDo";
 
 function ToDoList({ params }) {
   const router = useRouter();
@@ -16,7 +20,11 @@ function ToDoList({ params }) {
   const [makeLoading, setMakeLoading] = useState(false);
 
   const [todos, setTodos] = useState([]);
+  const [filterTodos,setFilterTodos]=useState([]);
+
   const [lastChanged, setLastChanged] = useState(-1);
+
+  const [toggleAi,setToggleAi]=useState(false);
 
   const verifyUser = async () => {
     setMakeLoading(true);
@@ -93,7 +101,6 @@ function ToDoList({ params }) {
         todo: todoToUpdate.todo,
         is_done: todoToUpdate.is_done,
       });
-
       toast.success(res.data.message || "Todo updated!");
     } catch (error) {
       toast.error("Error updating todo!");
@@ -105,6 +112,9 @@ function ToDoList({ params }) {
   return () => clearTimeout(debouncing);
 }, [lastChanged, todos]);
 
+  useEffect(()=>{
+      setFilterTodos(todos.filter(val=>val.is_done!=true));
+  },[todos]);
 
   useEffect(() => {
     if (session && status === "authenticated") {
@@ -136,25 +146,27 @@ function ToDoList({ params }) {
             >
               <input
                 type="checkbox"
+                disabled={lastChanged>=0 && lastChanged!=index}
                 className="scale-150 accent-secondary"
                 name="is_done"
                 checked={val.is_done ?? false}
                 onChange={(e) => handleChange(index, e.target.name, e.target.checked)}
               />
 
-              <textarea
+              <textarea placeholder={getRandomToDo()}
                 className={`focus:outline-0 w-full h-full px-1 resize-none caret-primary ${
                   val.is_done ? "line-through text-secondary" : ""
                 }`}
                 value={val.todo ?? ""}
                 name="todo"
+                disabled={lastChanged>=0 && lastChanged!=index}
                 onChange={(e) => handleChange(index, e.target.name, e.target.value)}
               />
 
               {/* {lastChanged === index && 
               <div>Loading...</div>} */}
 
-              { lastChanged === index && <div className="absolute right-0 top-0 m-1 w-4 h-4 bg-white border-4 border-t-white animate-spin border-pink-400 rounded-full flex items-center justify-center"></div>}
+              { lastChanged === index && <div className="absolute right-0 top-0 m-1 w-4 h-4 bg-transparent border-4 border-t-transparent animate-spin border-pink-400 rounded-full flex items-center justify-center"></div>}
 
               <XIcon
                 size={28}
@@ -167,13 +179,28 @@ function ToDoList({ params }) {
       )}
 
           <div
-            className="h-20 m-3 w-full sm:w-fit cursor-pointer bg-pink-300 flex items-center justify-center group p-3 rounded-lg gap-x-1"
+            className="h-20 m-3 w-full group sm:w-fit cursor-pointer bg-pink-300 flex items-center justify-center group p-3 rounded-lg gap-x-1"
             onClick={addNewToDo}
           >
-            <PlusIcon />
+            <PlusIcon className="group-hover:rotate-90 transition-transform"/>
             <p>List todo</p>
           </div>
       </div>
+
+      {/* Ask AI */}
+      {todos.length!=0 && !toggleAi && 
+      <div className="fixed z-[999] w-full bottom-0 p-2 flex items-end justify-end sm:items-center sm:justify-center">
+          <div className="text-lg w-fit group h-fit hover:bg-bg transition-all cursor-pointer font-medium font-mono border-pink-400 bg-pink-300 border-2 p-3 rounded-full flex items-center justify-center gap-x-3"
+          onClick={()=>setToggleAi(true)}
+          >
+          <Image src={"/gemini.webp"} alt="AI" width={40} height={40} className="bg-white rounded-full p-1 transition-transform group-hover:-rotate-90"/>
+            Ask AI
+          </div>
+      </div>}
+
+      <AnimatePresence>
+      {toggleAi && <GeminiAI todos={filterTodos} closeAI={()=>setToggleAi(false)}/>}
+      </AnimatePresence>
 
       {makeLoading && <Loader />}
     </div>
